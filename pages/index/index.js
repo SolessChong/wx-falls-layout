@@ -77,22 +77,34 @@ Page({
     },
 
     loadImages: function () {
-        let images = [
-            { pic: "../../images/1.png", height: 0 },
-            { pic: "../../images/2.png", height: 0 },
-            { pic: "../../images/3.png", height: 0 },
-            { pic: "../../images/4.png", height: 0 },
-            { pic: "../../images/5.png", height: 0 },
-            { pic: "../../images/6.png", height: 0 },
-            { pic: "../../images/7.png", height: 0 },
-            { pic: "../../images/8.png", height: 0 },
-            { pic: "../../images/9.png", height: 0 },
-            { pic: "../../images/10.png", height: 0 },
-            { pic: "../../images/11.png", height: 0 },
-            { pic: "../../images/12.png", height: 0 },
-            { pic: "../../images/13.png", height: 0 },
-            { pic: "../../images/14.png", height: 0 }
-        ];
+      let that = this;
+      let images = [];
+      wx.request({
+        url: "https://tuchong.xcx.zhiqun365.com/flow/",
+        header: {
+          "Content-Type":"application/json"
+        },
+        success: function (res) {
+          images = res.data.results;
+
+
+
+        // let images = [
+        //     { pic: "../../images/1.png", height: 0 },
+        //     { pic: "../../images/2.png", height: 0 },
+        //     { pic: "../../images/3.png", height: 0 },
+        //     { pic: "../../images/4.png", height: 0 },
+        //     { pic: "../../images/5.png", height: 0 },
+        //     { pic: "../../images/6.png", height: 0 },
+        //     { pic: "../../images/7.png", height: 0 },
+        //     { pic: "../../images/8.png", height: 0 },
+        //     { pic: "../../images/9.png", height: 0 },
+        //     { pic: "../../images/10.png", height: 0 },
+        //     { pic: "../../images/11.png", height: 0 },
+        //     { pic: "../../images/12.png", height: 0 },
+        //     { pic: "../../images/13.png", height: 0 },
+        //     { pic: "../../images/14.png", height: 0 }
+        // ];
 
         let baseId = "img-" + (+new Date());
 
@@ -100,10 +112,15 @@ Page({
             images[i].id = baseId + "-" + i;
         }
 
-        this.setData({
+        that.setData({
             loadingCount: images.length,
             images: images
         });
+
+        console.log(images);
+
+        },
+      })
     }
 
 })
